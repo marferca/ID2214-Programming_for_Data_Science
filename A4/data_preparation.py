@@ -7,25 +7,18 @@ import matplotlib.pyplot as plt
 # Import initial data
 df = pd.read_csv(os.path.join("initial_data", "training_smiles.csv"))
 
-# Get input features and labels from the out set
-X = df["SMILES"]
-y = df["ACTIVE"]
+# Analyze the data set
+#smiles = df["SMILES"].isnull().values.any()
 
-# Split into training validation and test
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-X_train, X_validation, y_train, y_validation = train_test_split(X_train, y_train, test_size=0.2)
+# Check if there are null values
+#print(df["SMILES"].isnull().values.any())
 
-
-# Save to csv files
-training = pd.DataFrame(data=pd.concat([X_train,y_train], axis=1), columns=["SMILES","ACTIVE"])
-validation = pd.DataFrame(data=pd.concat([X_validation,y_validation], axis=1), columns=["SMILES","ACTIVE"])
-test = pd.DataFrame(data=pd.concat([X_test,y_test], axis=1), columns=["SMILES","ACTIVE"])
-training.to_csv(os.path.join("out", "training.csv"))
-validation.to_csv(os.path.join("out", "validation.csv"))
-test.to_csv(os.path.join("out", "test.csv"), columns="SMILES")
+# Check if there are any duplicated rows
+print(df["SMILES"].duplicated().any())
+if (df.duplicated().any()):
+    print("There are duplicated rows")
 
 
-# Analyze the out set
 #labels = np.array(df["ACTIVE"])
 #counts, _ = np.histogram(labels, bins=2)
 #density = counts/np.sum(counts)
@@ -47,6 +40,31 @@ test.to_csv(os.path.join("out", "test.csv"), columns="SMILES")
 #counts, _ = np.histogram(labels, bins=2)
 #density = counts/np.sum(counts)
 #print(density)
+
+
+
+
+
+
+
+# Get input features and labels from the out set
+X = df["SMILES"]
+y = df["ACTIVE"]
+
+# Split into training validation and test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_validation, y_train, y_validation = train_test_split(X_train, y_train, test_size=0.2)
+
+
+# Save to csv files
+#training = pd.DataFrame(data=pd.concat([X_train,y_train], axis=1), columns=["SMILES","ACTIVE"])
+#validation = pd.DataFrame(data=pd.concat([X_validation,y_validation], axis=1), columns=["SMILES","ACTIVE"])
+#test = pd.DataFrame(data=pd.concat([X_test,y_test], axis=1), columns=["SMILES","ACTIVE"])
+#training.to_csv(os.path.join("out", "training.csv"))
+#validation.to_csv(os.path.join("out", "validation.csv"))
+#test.to_csv(os.path.join("out", "test.csv"), columns="SMILES")
+
+
 
 
 
