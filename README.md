@@ -16,5 +16,5 @@ Course assignments:
 
 - A1: Data preparation and evaluating predictive models
 - A2: k-NN and Naïve Bayes
-- A3: Decission Tree and Random Forest
+- A3: Decision Tree and Random Forest
 - A4: Data Science Project (Activity prediction for chemical compounds)
